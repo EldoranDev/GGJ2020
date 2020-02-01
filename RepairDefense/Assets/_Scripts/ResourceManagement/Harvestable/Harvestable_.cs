@@ -30,19 +30,25 @@ public abstract class Harvestable_ : MonoBehaviour
 	private void Awake()
 	{
 		rManager= GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
-		
 	}
 
 	public void OnHarvest()
 	{
-		rManager.AddResource(this, 5);
-
+		rManager.UpdateResource(this, 5);
 	}
 
+
 	private void OnTriggerEnter(Collider other){
-		if(other.GameObject.tag == "Player"){
-			other.GetComponentInChildren<Interaction>().UnityEventInteraction.AddListener(OnHarvest);
+		if(other.CompareTag("Player")){
+			other.gameObject.GetComponentInChildren<Interaction>().unityEventInteraction.AddListener(OnHarvest);
 		}
 
 	}
+
+	public void OnTriggerExit(Collider other){
+		if(other.CompareTag("Player")){
+			other.gameObject.GetComponentInChildren<Interaction>().unityEventInteraction.RemoveListener(OnHarvest);
+		}
+	}
+
 }
