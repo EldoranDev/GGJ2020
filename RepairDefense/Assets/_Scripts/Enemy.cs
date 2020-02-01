@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(WaypointManager))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
@@ -13,13 +14,13 @@ public class Enemy : MonoBehaviour
     Animator animator;
 
     [SerializeField]
-    float attackRange = 1f;
+    EnemyAttackSettings attack;
 
     [SerializeField]
-    float attackStrength = 1f;
+    EnemyAudioClips clips;
 
     [SerializeField]
-    float attackCooldown = 1f;
+    AudioSource audioSource;
 
     Destructible target;
 
@@ -27,7 +28,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        currentCooldown = attackCooldown;
+        currentCooldown = attack.cooldown;
     }
 
     // Update is called once per frame
@@ -39,10 +40,16 @@ public class Enemy : MonoBehaviour
 
             if (currentCooldown <= 0)
             {
-                currentCooldown = attackCooldown;
+                currentCooldown = attack.cooldown;
 
                 animator.SetTrigger("attack");
             }
+
+
+            var relativePosition = target.transform.position - transform.position;
+            var lookRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 1f);
         }
     }
 
@@ -58,20 +65,26 @@ public class Enemy : MonoBehaviour
 
     void Attack()
     {
-        var hits = Physics.OverlapSphere(attackPosition.position, attackRange, LayerMask.GetMask("Default"));
+        var hits = Physics.OverlapSphere(attackPosition.position, attack.range, LayerMask.GetMask("Default"));
 
-        Debug.Log(hits.Length);
+        Debug.Log(hits);
 
         foreach(var hit in hits)
         {
+            audioSource.PlayOneShot(clips.punch);
             var target = hit.GetComponent<Destructible>();
-            target?.OnDamageDestructible(attackStrength);
+            target?.OnDamageDestructible(attack.strenght);   
         }
+    }
+
+    void Step()
+    {
+        audioSource.PlayOneShot(clips.footstep);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPosition.position, attackRange);
+        Gizmos.DrawWireSphere(attackPosition.position, attack.range);
     }
 }

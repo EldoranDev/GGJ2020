@@ -16,6 +16,12 @@ public abstract class Destructible : MonoBehaviour
     [SerializeField]
     private Transform m_cHealthFill;
 
+    [SerializeField]
+    Material colapseMaterial;
+
+    [SerializeField]
+    float dissolveSpeed = 0.2f;
+
     public UnityEvent OnCollapse { get; } = new UnityEvent();
 
     public bool Collapsed
@@ -23,7 +29,9 @@ public abstract class Destructible : MonoBehaviour
         get; private set;
     }
 
-    private void Awake()
+    private bool fullyHidden = false;
+
+    void Awake()
     {
         m_fInitHealth = m_fHealth;
 
@@ -37,6 +45,22 @@ public abstract class Destructible : MonoBehaviour
         }
 
         UpdateHealthBar();
+    }
+
+    void Update()
+    {
+        if (Collapsed && !fullyHidden)
+        {
+            Debug.Log(colapseMaterial.shaderKeywords);
+            var current = colapseMaterial.GetFloat("Dissolve");
+
+            colapseMaterial.SetFloat("Dissolve", current + dissolveSpeed * Time.deltaTime);
+
+            if (current >= 1.5)
+            {
+                fullyHidden = true;
+            }
+        }
     }
 
     [ContextMenu("Damage Destructible")]
@@ -79,12 +103,16 @@ public abstract class Destructible : MonoBehaviour
         Collapsed = true;
         OnCollapse.Invoke();
 
-        // TODO: Update Model + Collider
-        
-        // just removing the collider for now
         foreach(var collider in GetComponents<Collider>())
         {
             collider.enabled = false;
+        }
+
+        var renderer = GetComponent<Renderer>();
+
+        for (var i = 0; i < renderer.materials.Length; i++)
+        {
+            renderer.materials[i] = colapseMaterial;
         }
     }
 
