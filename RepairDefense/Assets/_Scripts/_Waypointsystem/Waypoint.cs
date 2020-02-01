@@ -5,13 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class Waypoint : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Enemy")
         {
-            GameObject enemy = other.gameObject;
-            if (enemy.GetComponent<WaypointManager>().GetCurrentWaypoint() == this.gameObject)
-                enemy.GetComponent<WaypointMovement>().SetNextMovement();
+            AdvanceWaypoint(other.gameObject);
         }   
+    }
+    
+    protected virtual void AdvanceWaypoint(GameObject enemy)
+    {
+        if (enemy.GetComponent<WaypointManager>().GetCurrentWaypoint() == gameObject)
+        {
+            enemy.GetComponent<WaypointMovement>().SetNextMovement();
+        }
     }
 }

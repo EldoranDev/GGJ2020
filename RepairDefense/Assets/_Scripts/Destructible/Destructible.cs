@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Destructible : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public abstract class Destructible : MonoBehaviour
 
     [SerializeField]
     private Transform m_cHealthFill;
+
+    public UnityEvent OnCollapse { get; } = new UnityEvent();
+
+    public bool Collapsed
+    {
+        get; private set;
+    }
 
     private void Awake()
     {
@@ -68,7 +76,16 @@ public abstract class Destructible : MonoBehaviour
 
     private void OnCollapseDestructible()
     {
+        Collapsed = true;
+        OnCollapse.Invoke();
 
+        // TODO: Update Model + Collider
+        
+        // just removing the collider for now
+        foreach(var collider in GetComponents<Collider>())
+        {
+            collider.enabled = false;
+        }
     }
 
     private void UpdateHealthBar()
