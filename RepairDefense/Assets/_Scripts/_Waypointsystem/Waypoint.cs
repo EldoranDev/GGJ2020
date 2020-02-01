@@ -7,10 +7,10 @@ public class Waypoint : MonoBehaviour
 {
     protected void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy")
         {
             AdvanceWaypoint(other.gameObject);
-        }   
+        }
     }
     
     protected virtual void AdvanceWaypoint(GameObject enemy)
