@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65da5558d049fcf4c9d98085752e54d4, type: 3}
   m_Name: BasicClips
   m_EditorClassIdentifier: 
-  footstep: {fileID: 8300000, guid: 575e48ac8748efc478defdf0e81e3a8e, type: 3}
+  footstep: {fileID: 8300000, guid: 046ececf27d04704ab7ba3cc006dead4, type: 3}
   punch: {fileID: 8300000, guid: 8243c1f3e3e6949468009c79ece5f281, type: 3}
