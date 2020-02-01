@@ -55,6 +55,10 @@ public class ThirdPersonCharacterController : MonoBehaviour
             }
             CheckInteract();
         }
+        if (!Isinteracting)
+        {
+            CheckRunInput();
+        }
         CheckMouseLookInput();
     }
     private void FixedUpdate()
