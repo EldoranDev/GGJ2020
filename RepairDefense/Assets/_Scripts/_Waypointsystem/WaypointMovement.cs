@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaypointMovement : MonoBehaviour
 {
     [SerializeField]
-    private Waypoint waypoint;
+    private WaypointManager waypointManager;
     [SerializeField]
     private bool moveToWaypoint;
     [SerializeField]
@@ -26,18 +26,17 @@ public class WaypointMovement : MonoBehaviour
     private void Move()
     {
         float distance = movementSpeed * Time.deltaTime;
-        this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, waypoint.GetCurrentWaypoint().transform.position, distance);
-        Debug.Log(distance);
+        this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, waypointManager.GetCurrentWaypoint().transform.position, distance);
     }
 
     public void SetNextMovement()
     {
         waypointIndex++;
-        waypoint.SetCurrentWaypoint(waypointIndex);
+        waypointManager.SetCurrentWaypoint(waypointIndex);
     }
     private void Awake()
     {
-        this.gameObject.GetComponent<Waypoint>();
+        this.gameObject.GetComponent<WaypointManager>();
     }
 
     private void Update()
