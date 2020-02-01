@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    Transform attackHand;
+
+    [SerializeField]
+    float attackRange = 0.1f;
+
+    WaypointManager waypointManager;
 
     // Update is called once per frame
     void Update()
@@ -21,6 +23,8 @@ public class Enemy : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("Attack!");
+        var hits = Physics.OverlapSphere(attackHand.position, attackRange, LayerMask.NameToLayer("Default"));
+
+        Debug.Log(hits);
     }
 }

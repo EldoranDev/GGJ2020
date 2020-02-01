@@ -8,7 +8,12 @@ public class SpawnArea : MonoBehaviour
     Vector3 size = new Vector3(1, 0.1f, 1);
 
     [SerializeField]
+    Transform pathRoot;
+
+    [SerializeField]
     public bool active = false;
+
+    Waypoint[] cachedPath;
 
     void OnDrawGizmos()
     {
@@ -16,9 +21,16 @@ public class SpawnArea : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, size);
     }
 
+    void Awake()
+    {
+        cachedPath = pathRoot.GetComponentsInChildren<Waypoint>();
+    }
+
     void OnTriggerEnter(Collider collider)
     {
         var asteroid = collider.GetComponentInParent<Asteroid>();
+
+        Debug.Log(collider.gameObject);
 
         if (asteroid == null)
         {
@@ -33,7 +45,16 @@ public class SpawnArea : MonoBehaviour
         {
             for (var i = 0; i < spawn.Value; i++)
             {
-                Instantiate(spawn.Key, transform.position, Quaternion.identity);
+                var manager = Instantiate(spawn.Key, transform.position, Quaternion.identity).GetComponent<WaypointManager>();
+
+                Debug.Log(cachedPath);
+
+                foreach(var waypoint in cachedPath)
+                {
+                    manager.AddWayPoint(waypoint.gameObject);
+                }
+
+                manager.SetCurrentWaypoint(0);
             }
         }
 
