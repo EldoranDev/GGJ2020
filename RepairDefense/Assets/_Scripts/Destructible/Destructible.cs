@@ -67,9 +67,10 @@ public abstract class Destructible : MonoBehaviour
                 fullyHidden = true;
             }
 
-            materialPropertyBlock.SetFloat("Vector1_FEFF47F1", dissolve);
-
             dissolve += dissolveSpeed * Time.deltaTime;
+
+            materialPropertyBlock.SetFloat("Vector1_FEFF47F1", dissolve);
+            renderer.SetPropertyBlock(materialPropertyBlock);            
         }
     }
 
