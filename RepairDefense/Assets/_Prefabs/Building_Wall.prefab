@@ -97,6 +97,8 @@ MonoBehaviour:
   m_fHealth: 200
   m_acTrigger: []
   m_cHealthFill: {fileID: 4636560849174809583}
+  colapseMaterial: {fileID: 2100000, guid: 942796ccfc0725945942bb346cd1af14, type: 2}
+  dissolveSpeed: 0.2
 --- !u!1 &5881623538770228803
 GameObject:
   m_ObjectHideFlags: 0

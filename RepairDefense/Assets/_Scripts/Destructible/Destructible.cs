@@ -20,9 +20,16 @@ public abstract class Destructible : MonoBehaviour
     Material colapseMaterial;
 
     [SerializeField]
-    float dissolveSpeed = 0.2f;
+    float dissolveSpeed = 10f;
+
+    new Renderer renderer;
+
+    float dissolve = 0f;
+
+    MaterialPropertyBlock materialPropertyBlock;
 
     public UnityEvent OnCollapse { get; } = new UnityEvent();
+
 
     public bool Collapsed
     {
@@ -44,6 +51,10 @@ public abstract class Destructible : MonoBehaviour
             }
         }
 
+        materialPropertyBlock = new MaterialPropertyBlock();
+
+        renderer = GetComponent<Renderer>();
+
         UpdateHealthBar();
     }
 
@@ -51,15 +62,14 @@ public abstract class Destructible : MonoBehaviour
     {
         if (Collapsed && !fullyHidden)
         {
-            Debug.Log(colapseMaterial.shaderKeywords);
-            var current = colapseMaterial.GetFloat("Dissolve");
-
-            colapseMaterial.SetFloat("Dissolve", current + dissolveSpeed * Time.deltaTime);
-
-            if (current >= 1.5)
+            if (dissolve >= 1.5)
             {
                 fullyHidden = true;
             }
+
+            materialPropertyBlock.SetFloat("Vector1_FEFF47F1", dissolve);
+
+            dissolve += dissolveSpeed * Time.deltaTime;
         }
     }
 
@@ -110,10 +120,17 @@ public abstract class Destructible : MonoBehaviour
 
         var renderer = GetComponent<Renderer>();
 
-        for (var i = 0; i < renderer.materials.Length; i++)
+        var materials = new Material[renderer.materials.Length];
+
+        for (var i = 0; i < materials.Length; i++)
         {
-            renderer.materials[i] = colapseMaterial;
+            materials[i] = colapseMaterial;
         }
+
+        renderer.materials = materials;
+
+        materialPropertyBlock.SetFloat("Vector1_FEFF47F1", dissolve);
+        renderer.SetPropertyBlock(materialPropertyBlock);
     }
 
     private void UpdateHealthBar()

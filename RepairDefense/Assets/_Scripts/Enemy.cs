@@ -90,8 +90,6 @@ public class Enemy : MonoBehaviour
             var target = hit.GetComponent<Destructible>();
             target?.OnDamageDestructible(attack.strenght);   
         }
-
-        
     }
 
     void Step()
