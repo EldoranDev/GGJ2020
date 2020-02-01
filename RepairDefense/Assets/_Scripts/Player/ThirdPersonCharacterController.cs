@@ -94,7 +94,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
     private void CheckInteract()
     {
-        if (Input.GetAxisRaw("Fire1") != 0)
+        if (Input.GetAxis("Fire1") != 0)
         {
             rigi.velocity = Vector3.zero;
             anim.SetBool("IsInteracting", true);

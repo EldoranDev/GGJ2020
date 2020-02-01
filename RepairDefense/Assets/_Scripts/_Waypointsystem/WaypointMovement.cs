@@ -40,7 +40,7 @@ public class WaypointMovement : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
 
         // Update Animator stuff
-        animator.SetFloat("speed", distance);   
+        animator.SetFloat("speed", distance);
     }
 
     public void SetWaypointManager(WaypointManager manager)
@@ -61,6 +61,8 @@ public class WaypointMovement : MonoBehaviour
 
     private void Update()
     {
+        animator.SetFloat("speed", 0);
+
         if (moveToWaypoint)
         {
             Move();
