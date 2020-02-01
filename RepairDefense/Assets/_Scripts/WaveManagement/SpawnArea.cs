@@ -13,6 +13,9 @@ public class SpawnArea : MonoBehaviour
     [SerializeField]
     public bool active = false;
 
+    [SerializeField]
+    new AudioSource audio;
+
     List<Waypoint[]> cachedPaths = new List<Waypoint[]>();
 
     void OnDrawGizmos()
@@ -59,6 +62,8 @@ public class SpawnArea : MonoBehaviour
             }
         }
 
-        Destroy(asteroid.gameObject);
+        audio.Play();
+        Destroy(asteroid);
+        Destroy(asteroid.gameObject, 5f);
     }
 }
