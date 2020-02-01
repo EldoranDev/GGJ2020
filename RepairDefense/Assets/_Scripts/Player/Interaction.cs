@@ -15,6 +15,7 @@ public class Interaction : MonoBehaviour
     }
     void InteractionEvent()
     {
+        Debug.Log("Interact", this);
         unityEventInteraction.Invoke();
     }
 }
