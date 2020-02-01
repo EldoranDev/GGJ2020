@@ -22,9 +22,9 @@ public class ThirdPersonCharacterController : MonoBehaviour
     float castOffset;
     [SerializeField]
     float castRadius;
-
-    [SerializeField]
+    
     bool IsGrounded = true;
+    bool Isinteracting = false;
     Rigidbody rigi;
 
     private void Start()
@@ -48,8 +48,11 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
         if (IsGrounded)
         {
-            CheckRunInput();
-            CheckJump();
+            if (!Isinteracting)
+            {
+                CheckRunInput();
+                CheckJump();
+            }
             CheckInteract();
         }
         CheckMouseLookInput();
@@ -93,13 +96,15 @@ public class ThirdPersonCharacterController : MonoBehaviour
     {
         if (Input.GetAxisRaw("Fire1") != 0)
         {
-            anim.SetBool("IsRunning", false);
             rigi.velocity = Vector3.zero;
             anim.SetBool("IsInteracting", true);
+            anim.SetBool("IsRunning", false);
+            Isinteracting = true;
         }
         else
         {
             anim.SetBool("IsInteracting", false);
+            Isinteracting = false;
         }
     }
 
@@ -117,8 +122,6 @@ public class ThirdPersonCharacterController : MonoBehaviour
         RaycastHit hit;
         if (Physics.SphereCast(transform.position + Vector3.up * castOffset, castRadius, Vector3.down, out hit, .0035f))
         {
-            Debug.Log("Hit");
-            Debug.Log(hit.collider.name);
             if (hit.collider.gameObject.CompareTag("Ground"))
             {
                 IsGrounded = true;
