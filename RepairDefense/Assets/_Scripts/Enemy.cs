@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(WaypointManager))]
 [RequireComponent(typeof(Animator))]
@@ -21,6 +22,11 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     AudioSource audioSource;
+
+    public UnityEvent deathEvent;
+
+    [SerializeField]
+    float health;
 
     Destructible target;
 
@@ -63,11 +69,20 @@ public class Enemy : MonoBehaviour
         this.target = null;
     }
 
+    public void OnDamage(int dmg)
+    {
+        health -= dmg;
+        Debug.Log(health);
+        if (health <= 0)
+        {
+            deathEvent.Invoke();
+            Destroy(this);
+        }
+    }
+
     void Attack()
     {
         var hits = Physics.OverlapSphere(attackPosition.position, attack.range, LayerMask.GetMask("Default"));
-
-        Debug.Log(hits);
 
         foreach(var hit in hits)
         {
@@ -75,6 +90,8 @@ public class Enemy : MonoBehaviour
             var target = hit.GetComponent<Destructible>();
             target?.OnDamageDestructible(attack.strenght);   
         }
+
+        
     }
 
     void Step()
