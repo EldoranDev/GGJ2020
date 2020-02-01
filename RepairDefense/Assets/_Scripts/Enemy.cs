@@ -18,4 +18,9 @@ public class Enemy : MonoBehaviour
             GetComponentInChildren<Animator>().SetTrigger("attack");
         }
     }
+
+    void Attack()
+    {
+        Debug.Log("Attack!");
+    }
 }
