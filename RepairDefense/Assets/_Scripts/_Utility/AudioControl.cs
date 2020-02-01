@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioControl : MonoBehaviour
+public class AudioControl : Singleton<AudioControl>
 {
 
     public void SetGeneralVolume(float volume)

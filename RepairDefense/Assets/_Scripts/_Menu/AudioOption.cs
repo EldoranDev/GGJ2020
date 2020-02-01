@@ -10,7 +10,7 @@ public class AudioOption : MonoBehaviour
 
     public void SetMasterVolume() 
     {
-        AudioControl.Instance.SetGeneralVolume(masterVolumeSlider.value);
+        //AudioControl.Instance.SetGeneralVolume(masterVolumeSlider.value);
         Debug.Log(AudioListener.volume);
     }
 
