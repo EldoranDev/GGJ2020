@@ -73,7 +73,6 @@ public class WaveManager : MonoBehaviour
                     }
                 }
 
-                enabled = false;
                 level++;
             }
         }

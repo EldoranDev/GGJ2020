@@ -8,12 +8,12 @@ public class SpawnArea : MonoBehaviour
     Vector3 size = new Vector3(1, 0.1f, 1);
 
     [SerializeField]
-    Transform pathRoot;
+    Transform[] pathRoots;
 
     [SerializeField]
     public bool active = false;
 
-    Waypoint[] cachedPath;
+    List<Waypoint[]> cachedPaths = new List<Waypoint[]>();
 
     void OnDrawGizmos()
     {
@@ -23,7 +23,10 @@ public class SpawnArea : MonoBehaviour
 
     void Awake()
     {
-        cachedPath = pathRoot.GetComponentsInChildren<Waypoint>();
+        foreach(var root in pathRoots)
+        {
+            cachedPaths.Add(root.GetComponentsInChildren<Waypoint>());
+        }
     }
 
     void OnTriggerEnter(Collider collider)
@@ -47,9 +50,7 @@ public class SpawnArea : MonoBehaviour
             {
                 var manager = Instantiate(spawn.Key, transform.position, Quaternion.identity).GetComponent<WaypointManager>();
 
-                Debug.Log(cachedPath);
-
-                foreach(var waypoint in cachedPath)
+                foreach(var waypoint in cachedPaths.GetRandom())
                 {
                     manager.AddWayPoint(waypoint.gameObject);
                 }
