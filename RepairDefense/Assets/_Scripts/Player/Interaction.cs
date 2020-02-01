@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Interaction : MonoBehaviour
 {
-    UnityEvent unityEventInteraction;
+    public UnityEvent unityEventInteraction;
     private void Start()
     {
         if (unityEventInteraction == null)
