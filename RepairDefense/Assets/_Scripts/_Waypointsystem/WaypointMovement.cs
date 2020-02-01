@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class WaypointMovement : MonoBehaviour
 {
     [SerializeField]
@@ -11,7 +12,11 @@ public class WaypointMovement : MonoBehaviour
     [SerializeField]
     private float movementSpeed;
     [SerializeField]
+    private float rotationSpeed;
+    [SerializeField]
     private int waypointIndex;
+
+    private Animator animator;
 
     public WaypointMovement()
     {
@@ -25,8 +30,22 @@ public class WaypointMovement : MonoBehaviour
     }
     private void Move()
     {
+        var target = waypointManager.GetCurrentWaypoint().transform;
         float distance = movementSpeed * Time.deltaTime;
-        this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, waypointManager.GetCurrentWaypoint().transform.position, distance);
+        this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, target.position, distance);
+
+        var relativePosition = target.position - transform.position;
+        var lookRotation = Quaternion.LookRotation(relativePosition, Vector3.up);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+
+        // Update Animator stuff
+        animator.SetFloat("speed", distance);   
+    }
+
+    public void SetWaypointManager(WaypointManager manager)
+    {
+        waypointManager = manager;
     }
 
     public void SetNextMovement()
@@ -37,6 +56,7 @@ public class WaypointMovement : MonoBehaviour
     private void Awake()
     {
         this.gameObject.GetComponent<WaypointManager>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()

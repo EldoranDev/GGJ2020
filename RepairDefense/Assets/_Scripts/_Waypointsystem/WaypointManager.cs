@@ -16,7 +16,7 @@ public class WaypointManager : MonoBehaviour
 
     private void Awake()
     {
-        if (waypoints[0] != null) 
+        if (waypoints.Count > 0 && waypoints[0] != null) 
         { 
             currentWaypoint = waypoints[0];
         }

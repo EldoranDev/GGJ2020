@@ -68,11 +68,12 @@ public class WaveManager : MonoBehaviour
                     {
                         spawnedAsteroid.AddToPayload(
                             enemies[j].Prefab,
-                            Random.Range(0, Mathf.Min((int)count, enemies[j].Limit))
+                            Random.Range(1, Mathf.Min((int)count, enemies[j].Limit))
                         );
                     }
                 }
 
+                enabled = false;
                 level++;
             }
         }
