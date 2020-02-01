@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(WaypointManager))]
 [RequireComponent(typeof(Animator))]
 public class Enemy : MonoBehaviour
 {
+    public UnityEvent deathEvent;
+
     [SerializeField]
     Transform attackPosition;
 
@@ -20,6 +23,9 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     float attackCooldown = 1f;
+
+    [SerializeField]
+    float health;
 
     Destructible target;
 
@@ -73,5 +79,15 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition.position, attackRange);
+    }
+    public void OnDamage(int dmg)
+    {
+        health -= dmg;
+        Debug.Log(health);
+        if (health <= 0)
+        {
+            deathEvent.Invoke();
+            Destroy(this);
+        }
     }
 }
