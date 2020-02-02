@@ -1676,6 +1676,12 @@ PrefabInstance:
       propertyPath: counterText
       value: 
       objectReference: {fileID: 869253605}
+    - target: {fileID: 5841006846366589167, guid: 86546f90af255e049bbe5434c1500b3a,
+        type: 3}
+      propertyPath: ammunition
+      value: 
+      objectReference: {fileID: 9086713718986088627, guid: 2c8c6d2c88666e24cb226d86b8bfaaf2,
+        type: 3}
     - target: {fileID: 5994345696488164560, guid: 86546f90af255e049bbe5434c1500b3a,
         type: 3}
       propertyPath: m_Name
@@ -1867,6 +1873,12 @@ PrefabInstance:
       propertyPath: counterText
       value: 
       objectReference: {fileID: 869253605}
+    - target: {fileID: 5841006846366589167, guid: 86546f90af255e049bbe5434c1500b3a,
+        type: 3}
+      propertyPath: ammunition
+      value: 
+      objectReference: {fileID: 9086713718986088627, guid: 2c8c6d2c88666e24cb226d86b8bfaaf2,
+        type: 3}
     - target: {fileID: 5994345696488164560, guid: 86546f90af255e049bbe5434c1500b3a,
         type: 3}
       propertyPath: m_Name
@@ -12485,6 +12497,12 @@ PrefabInstance:
       propertyPath: counterText
       value: 
       objectReference: {fileID: 869253605}
+    - target: {fileID: 5841006846366589167, guid: 86546f90af255e049bbe5434c1500b3a,
+        type: 3}
+      propertyPath: ammunition
+      value: 
+      objectReference: {fileID: 9086713718986088627, guid: 2c8c6d2c88666e24cb226d86b8bfaaf2,
+        type: 3}
     - target: {fileID: 5994345696488164560, guid: 86546f90af255e049bbe5434c1500b3a,
         type: 3}
       propertyPath: m_Name
@@ -17654,6 +17672,12 @@ PrefabInstance:
       propertyPath: counterText
       value: 
       objectReference: {fileID: 869253605}
+    - target: {fileID: 5841006846366589167, guid: 86546f90af255e049bbe5434c1500b3a,
+        type: 3}
+      propertyPath: ammunition
+      value: 
+      objectReference: {fileID: 9086713718986088627, guid: 2c8c6d2c88666e24cb226d86b8bfaaf2,
+        type: 3}
     - target: {fileID: 5994345696488164560, guid: 86546f90af255e049bbe5434c1500b3a,
         type: 3}
       propertyPath: m_Name
@@ -20937,6 +20961,12 @@ PrefabInstance:
       propertyPath: counterText
       value: 
       objectReference: {fileID: 869253605}
+    - target: {fileID: 5841006846366589167, guid: 86546f90af255e049bbe5434c1500b3a,
+        type: 3}
+      propertyPath: ammunition
+      value: 
+      objectReference: {fileID: 9086713718986088627, guid: 2c8c6d2c88666e24cb226d86b8bfaaf2,
+        type: 3}
     - target: {fileID: 5994345696488164560, guid: 86546f90af255e049bbe5434c1500b3a,
         type: 3}
       propertyPath: m_Name
@@ -29482,6 +29512,12 @@ PrefabInstance:
       propertyPath: counterText
       value: 
       objectReference: {fileID: 869253605}
+    - target: {fileID: 5841006846366589167, guid: 86546f90af255e049bbe5434c1500b3a,
+        type: 3}
+      propertyPath: ammunition
+      value: 
+      objectReference: {fileID: 9086713718986088627, guid: 2c8c6d2c88666e24cb226d86b8bfaaf2,
+        type: 3}
     - target: {fileID: 5994345696488164560, guid: 86546f90af255e049bbe5434c1500b3a,
         type: 3}
       propertyPath: m_Name
@@ -33501,6 +33537,12 @@ PrefabInstance:
       propertyPath: counterText
       value: 
       objectReference: {fileID: 869253605}
+    - target: {fileID: 5841006846366589167, guid: 86546f90af255e049bbe5434c1500b3a,
+        type: 3}
+      propertyPath: ammunition
+      value: 
+      objectReference: {fileID: 9086713718986088627, guid: 2c8c6d2c88666e24cb226d86b8bfaaf2,
+        type: 3}
     - target: {fileID: 5994345696488164560, guid: 86546f90af255e049bbe5434c1500b3a,
         type: 3}
       propertyPath: m_Name
@@ -36182,6 +36224,12 @@ PrefabInstance:
       propertyPath: counterText
       value: 
       objectReference: {fileID: 869253605}
+    - target: {fileID: 5841006846366589167, guid: 86546f90af255e049bbe5434c1500b3a,
+        type: 3}
+      propertyPath: ammunition
+      value: 
+      objectReference: {fileID: 9086713718986088627, guid: 2c8c6d2c88666e24cb226d86b8bfaaf2,
+        type: 3}
     - target: {fileID: 5994345696488164560, guid: 86546f90af255e049bbe5434c1500b3a,
         type: 3}
       propertyPath: m_Name

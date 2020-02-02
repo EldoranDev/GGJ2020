@@ -33,7 +33,7 @@ public class Tutorial : MonoBehaviour
             switch (currentPanel)
             {
                 case 0:
-                    textField.text = "To move forward press W. \nA and D for sideways. \nAnd W for backwards. \nUse your mouse to look around.";
+                    textField.text = "To move forward press W. \nA and D for sideways. \nAnd S for backwards. \nUse your mouse to look around.";
                     break;
                 case 1:
                     textField.text = "Look for a tree or stone \nto harvest ressources with your left mousebutton.";
