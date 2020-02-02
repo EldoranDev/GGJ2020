@@ -12,7 +12,7 @@ public class GameOver : MonoBehaviour
     }
     public void OnRestart()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
     public void OnQuit()
     {
