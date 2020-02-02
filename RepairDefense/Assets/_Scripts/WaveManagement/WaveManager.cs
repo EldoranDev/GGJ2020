@@ -57,6 +57,8 @@ public class WaveManager : MonoBehaviour
                 var source = GetSpawn();
                 var target = GetSpawnArea();
 
+                target.active = false;
+
                 var spawnedAsteroid = Instantiate(asteroid, source.position, Quaternion.identity).GetComponent<Asteroid>();
                 spawnedAsteroid.SetTarget(target.transform.position);
                 
@@ -74,6 +76,11 @@ public class WaveManager : MonoBehaviour
                 }
 
                 level++;
+            }
+
+            foreach (var area in spawnAreas)
+            {
+                area.active = true;
             }
         }
     }
