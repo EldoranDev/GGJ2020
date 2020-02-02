@@ -65,7 +65,7 @@ public class TargetEnemy : MonoBehaviour
     }
     void OnEnemyDeath()
     {
-        DEATH_COUNT = 0;
+        DEATH_COUNT += 1;
 
         counterText.text = DEATH_COUNT.ToString();
 

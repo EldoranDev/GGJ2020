@@ -342,7 +342,7 @@ MonoBehaviour:
   deathEvent:
     m_PersistentCalls:
       m_Calls: []
-  health: 10000
+  health: 50
 --- !u!114 &4783318647510224106
 MonoBehaviour:
   m_ObjectHideFlags: 0
