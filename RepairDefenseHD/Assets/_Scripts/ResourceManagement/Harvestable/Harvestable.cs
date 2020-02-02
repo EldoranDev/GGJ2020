@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public abstract class Harvestable : MonoBehaviour
+public class Harvestable : MonoBehaviour
 {
 
 	public enum ResourceType{
@@ -12,69 +13,39 @@ public abstract class Harvestable : MonoBehaviour
 		Food,
 		Water,
 		None
-	}
-
+	}	
 
 	[SerializeField]
-	private int Amount;
-
-	private int MaxAmount;
-
 	public int harvestedAmount;
+	ResourceManager rManager;
+	public ResourceType r_type;
 
-	public ResourceType type;
-
-	[SerializeField]
-	private List<Collider> m_acTrigger;
-
-	[SerializeField]
-	private Transform AmountFill;
+	// public ResourceType GetResourceType(){
+	// 	return type;
+	// }
 
 	private void Awake()
 	{
-		MaxAmount = Amount;
+		rManager = GameObject.FindObjectOfType<ResourceManager>();
+	}
 
-		if (m_acTrigger != null && m_acTrigger.Count > 0)
-		{
-			foreach (Collider cTrigger in m_acTrigger)
-			{
-				TriggerBehaviour cBehaviour = cTrigger.gameObject.AddComponent<TriggerBehaviour>();
-			
-			}
+	public void OnHarvest()
+	{
+		rManager.UpdateResource(this, 5);
+	}
+
+
+	private void OnTriggerEnter(Collider other){
+		if(other.CompareTag("Player")){
+			other.gameObject.GetComponentInChildren<Interaction>().unityEventInteraction.AddListener(OnHarvest);
 		}
 
-		UpdateAmountBar();
 	}
 
-	[ContextMenu("Harvested")]
-	public void TestHarvest()
-	{
-		OnHarvest(harvestedAmount);
-	}
-		
-
-	public void OnHarvest(int fDamage)
-	{
-		Amount -= fDamage;
-
-		if(Amount < 0)
-		{
-			Amount = 0;
-			OnFullyHarvested();
-		}
-		UpdateAmountBar();
-	}
-		
-	private void OnFullyHarvested(){
-
-	}
-
-	private void UpdateAmountBar()
-	{
-		if (AmountFill != null)
-		{
-			AmountFill.localScale = new Vector3(Amount / MaxAmount, 1.0f, 1.0f);
-			AmountFill.localPosition = new Vector3((1 - Amount / MaxAmount) * 0.01f, 0.0f, 0.0f);
+	public void OnTriggerExit(Collider other){
+		if(other.CompareTag("Player")){
+			other.gameObject.GetComponentInChildren<Interaction>().unityEventInteraction.RemoveListener(OnHarvest);
 		}
 	}
+
 }

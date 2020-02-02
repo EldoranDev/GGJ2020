@@ -36,15 +36,12 @@ public class SpawnArea : MonoBehaviour
     {
         var asteroid = collider.GetComponentInParent<Asteroid>();
 
-        Debug.Log(collider.gameObject);
-
         if (asteroid == null)
         {
             return;
         }
 
         audio.Play();
-        Debug.Log(audio);
         // TODO: Play Explosion
 
         var payload = asteroid.GetPayload();

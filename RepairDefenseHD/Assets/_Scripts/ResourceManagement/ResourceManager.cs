@@ -24,7 +24,7 @@ public class ResourceManager : MonoBehaviour
 
 	}
 	
-	public void UpdateResource(Harvestable_ harv, int amount){
+	public void UpdateResource(Harvestable harv, int amount){
 		Debug.Log("Resource Added: " + harv.r_type + amount);
 		h_type = harv.r_type.ToString();
 		switch (h_type){
@@ -47,7 +47,7 @@ public class ResourceManager : MonoBehaviour
 		UpdateGUI();
 	}
 
-	public int GetResourceAmount(Harvestable_ harv){
+	public int GetResourceAmount(Harvestable harv){
 		h_type = harv.r_type.ToString();
 		switch (h_type){
 			case "Wood": 
