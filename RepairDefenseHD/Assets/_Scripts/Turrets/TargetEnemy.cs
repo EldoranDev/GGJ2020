@@ -5,12 +5,17 @@ using TMPro;
 
 public class TargetEnemy : MonoBehaviour
 {
+    public static int DEATH_COUNT = 0;
+
     [SerializeField]
-    public TMP_Text resourcetext;
+    public TMP_Text counterText;
+
+    [SerializeField]
     GameObject ammunition;
+
     [SerializeField]
-    private int enemydeathcount;
     float cooldownBetweenShots;
+
     GameObject loadedProjectile;
     Quaternion projectileRotation;
     Vector3 projectilePosition;
@@ -56,9 +61,11 @@ public class TargetEnemy : MonoBehaviour
         }
     }
     void OnEnemyDeath()
-    {   
-        enemydeathcount += 1;
-        resourcetext.text = enemydeathcount + " Enemies killed!";
+    {
+        DEATH_COUNT = 0;
+
+        counterText.text = DEATH_COUNT.ToString();
+
         currentTarget.GetComponent<Enemy>().deathEvent.RemoveAllListeners();
         Collider[] allOverallpingColliders = Physics.OverlapSphere(GetComponent<SphereCollider>().center, GetComponent<SphereCollider>().radius);
         float bestDistance = 9999f;
