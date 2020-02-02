@@ -30,6 +30,7 @@ public abstract class Destructible : MonoBehaviour
 
     public UnityEvent OnCollapse { get; } = new UnityEvent();
 
+    ResourceManager rManager;
 
     public bool Collapsed
     {
@@ -83,7 +84,7 @@ public abstract class Destructible : MonoBehaviour
     [ContextMenu("Repair Destructible")]
     public void TestRepair()
     {
-        OnRepairDestructible(5.0f);
+        OnRepairDestructible(5);
     }
 
     public void OnDamageDestructible(float fDamage)
@@ -105,17 +106,37 @@ public abstract class Destructible : MonoBehaviour
         }
     }
 
-    public void OnRepairDestructible(float fRepairValue)
+    public void OnRepairDestructible(int fRepairValue)
     {
-        if (this.GetType() != typeof(Building_Main))
+        //TODO: Do not overrepair
+        //TODO: init health != max health (we need max health)
+        if (rManager.currentwood >= fRepairValue && rManager.currentstone >= fRepairValue)
         {
+            Debug.Log("Repairing. Resources: Wood: " + rManager.currentwood + "Stone: " + rManager.currentstone);
+            rManager.currentwood -= 10;
+            rManager.currentstone -= 10;
+            Debug.Log("RepairedResources: Wood: " + rManager.currentwood + "Stone: " + rManager.currentstone);
             m_fHealth += fRepairValue;
 
             if (m_fHealth > m_fInitHealth)
             {
                 m_fHealth = m_fInitHealth;
             }
+            rManager.UpdateGUI();
             UpdateHealthBar();
+        }
+        else
+        {
+            int requiredwood = fRepairValue - rManager.currentwood;
+            int requiredstone = fRepairValue - rManager.currentstone;
+            if (requiredwood > 0)
+            {
+                Debug.Log("You require " + requiredwood + " more Wood!");
+            }
+            if (requiredstone > 0)
+            {
+                Debug.Log("You require " + requiredstone + " more Stone!");
+            }
         }
     }
 

@@ -63,6 +63,7 @@ public class SpawnArea : MonoBehaviour
         }
 
         audio.Play();
+
         Destroy(asteroid);
         Destroy(asteroid.gameObject, 5f);
     }
