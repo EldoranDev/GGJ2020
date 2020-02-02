@@ -43,13 +43,15 @@ public class SpawnArea : MonoBehaviour
             return;
         }
 
+        audio.Play();
+        Debug.Log(audio);
         // TODO: Play Explosion
 
         var payload = asteroid.GetPayload();
 
         StartCoroutine("Spawn", payload);
 
-        audio.Play();
+        
         Destroy(asteroid);
         Destroy(asteroid.gameObject, 10f);
     }

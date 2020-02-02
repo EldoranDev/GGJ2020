@@ -8665,7 +8665,7 @@ PrefabInstance:
     - target: {fileID: 5101890987702932530, guid: 741a23fb82ad545409d01525d18db820,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: 5101890987702932530, guid: 741a23fb82ad545409d01525d18db820,
         type: 3}
@@ -28369,7 +28369,7 @@ MonoBehaviour:
   asteroid: {fileID: 6863102593849635547, guid: 8fcb5f9e34c9fb0468f05f28ab97beb1,
     type: 3}
   cooldown: 10
-  spawnCount: 4
+  spawnCount: 1
   enemies:
   - Prefab: {fileID: 3548889153780717032, guid: fc9551026aa31814c81b2d1bcf8253cc,
       type: 3}
