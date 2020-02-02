@@ -30,22 +30,11 @@ public class ThirdPersonCharacterController : MonoBehaviour
     private void Start()
     {
         rigi = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
     private void Update()
     {
-        #region mouseDebug
-        if (Input.GetMouseButtonDown(0))
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        #endregion
-
         if (IsGrounded)
         {
             if (!Isinteracting)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public abstract class Destructible : MonoBehaviour
 {
@@ -73,6 +74,11 @@ public abstract class Destructible : MonoBehaviour
             materialPropertyBlock.SetFloat("Vector1_FEFF47F1", dissolve);
             renderer.SetPropertyBlock(materialPropertyBlock);            
         }
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            m_fHealth = 0;
+            OnDamageDestructible(1);
+        }
     }
 
     [ContextMenu("Damage Destructible")]
@@ -101,7 +107,7 @@ public abstract class Destructible : MonoBehaviour
         {
             if (m_fHealth <= 0)
             {
-                //TODO: GameOver Transition
+                SceneManager.LoadScene(2);
             }
         }
     }
