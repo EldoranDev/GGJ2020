@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField]
-    float speed;
+    float speed = 10;
 
     bool fired = false;
     Vector3 target;

@@ -39,7 +39,7 @@ public class Tutorial : MonoBehaviour
                     textField.text = "Look for a tree or stone \nto harvest ressources with your left mousebutton.";
                     break;
                 case 2:
-                    textField.text = "Repair your walls with 10 wood and 10 stone each per repair.";
+                    textField.text = "Repair your walls with 10 wood and 10 stone each per repair.\nGo up to them and press the left mouse button.";
                     break;
                 case 3:
                     textField.text = "Don't let the enemies destroy your walls and reach your main building.";
