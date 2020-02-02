@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(TMP_Text))]
+
 public class Tutorial : MonoBehaviour
 {
     [SerializeField]
@@ -19,6 +21,7 @@ public class Tutorial : MonoBehaviour
     private void Start()
     {
         currentPanelTime = secondsPerPannel;
+        textField.GetComponent<TMP_Text>();
     }
 
     void Update()
