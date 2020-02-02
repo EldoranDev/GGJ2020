@@ -9,6 +9,7 @@ public abstract class Destructible : MonoBehaviour
     [SerializeField]
     private float m_fHealth;
 
+    [SerializeField]
     private float m_fInitHealth;
 
     [SerializeField]
@@ -42,7 +43,15 @@ public abstract class Destructible : MonoBehaviour
 
     void Awake()
     {
-        m_fInitHealth = m_fHealth;
+        if (m_fInitHealth == 0)
+        {
+            m_fInitHealth = 200;
+
+        }
+        if (this.GetType() != typeof(Building_Main))
+        {
+            transform.localScale = new Vector3(1, m_fHealth / m_fInitHealth, 1);
+        }
 
         if (m_acTrigger != null && m_acTrigger.Count > 0)
         {
@@ -97,11 +106,12 @@ public abstract class Destructible : MonoBehaviour
     {
         m_fHealth -= fDamage;
 
-        if(m_fHealth < 0.0f)
+        if(m_fHealth <= 0.0f)
         {
             m_fHealth = 0.0f;
             OnCollapseDestructible();
         }
+        OnCollapseBuilding();
         UpdateHealthBar();
         if (this.GetType() == typeof(Building_Main))
         {
@@ -109,6 +119,13 @@ public abstract class Destructible : MonoBehaviour
             {
                 SceneManager.LoadScene(2);
             }
+        }
+    }
+    public void OnCollapseBuilding()
+    {
+        if (this.GetType() != typeof(Building_Main))
+        {
+            transform.localScale = new Vector3(1, m_fHealth / m_fInitHealth, 1);
         }
     }
 
