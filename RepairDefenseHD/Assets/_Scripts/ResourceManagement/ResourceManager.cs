@@ -6,8 +6,12 @@ using TMPro;
 
 
 public class ResourceManager : MonoBehaviour
-{
-	public TMP_Text resourcetext;
+{ 
+    [SerializeField]
+    TMP_Text woodText;
+
+    [SerializeField]
+    TMP_Text stoneText;
 
 	public int currentwood;
 	public int currentstone;
@@ -71,7 +75,8 @@ public class ResourceManager : MonoBehaviour
 	}
 
 	public void UpdateGUI(){
-		resourcetext.text = "Wood: " + currentwood + " \nStone: " + currentstone + " \nMetal: " + currentmetal + " \nFood: " + currentfood + " \nWater: " + currentwater;
+        woodText.text = currentwood.ToString();
+        stoneText.text = currentstone.ToString();
 	}
 
 }

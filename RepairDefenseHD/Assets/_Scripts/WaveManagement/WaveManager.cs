@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WaveManager : MonoBehaviour
 {
@@ -14,10 +15,16 @@ public class WaveManager : MonoBehaviour
     }
 
     [SerializeField]
+    TMP_Text waveDisplay;
+
+    [SerializeField]
     GameObject asteroid;
 
     [SerializeField]
     float cooldown;
+
+    [SerializeField]
+    float initialDelay;
 
     [SerializeField]
     int spawnCount = 1;
@@ -39,7 +46,7 @@ public class WaveManager : MonoBehaviour
         spawnAreas = GameObject.FindObjectsOfType<SpawnArea>();
         spawns = GameObject.FindGameObjectsWithTag("Spawn");
 
-        currentCooldown = cooldown;
+        currentCooldown = initialDelay;
     }
 
 
@@ -74,6 +81,7 @@ public class WaveManager : MonoBehaviour
                 }
 
                 level++;
+                waveDisplay.text = level.ToString();
             }
         }
     }
