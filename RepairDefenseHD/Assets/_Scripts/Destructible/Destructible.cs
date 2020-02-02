@@ -96,17 +96,27 @@ public abstract class Destructible : MonoBehaviour
             OnCollapseDestructible();
         }
         UpdateHealthBar();
+        if (this.GetType() == typeof(Building_Main))
+        {
+            if (m_fHealth <= 0)
+            {
+                //TODO: GameOver Transition
+            }
+        }
     }
 
     public void OnRepairDestructible(float fRepairValue)
     {
-        m_fHealth += fRepairValue;
-
-        if(m_fHealth > m_fInitHealth)
+        if (this.GetType() != typeof(Building_Main))
         {
-            m_fHealth = m_fInitHealth;
+            m_fHealth += fRepairValue;
+
+            if (m_fHealth > m_fInitHealth)
+            {
+                m_fHealth = m_fInitHealth;
+            }
+            UpdateHealthBar();
         }
-        UpdateHealthBar();
     }
 
     private void OnCollapseDestructible()
