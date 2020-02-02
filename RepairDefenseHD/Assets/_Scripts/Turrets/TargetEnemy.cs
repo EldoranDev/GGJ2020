@@ -75,13 +75,19 @@ public class TargetEnemy : MonoBehaviour
         Collider bestEnemy = null;
         foreach (Collider col in allOverallpingColliders)
         {
-            float distance = Vector3.Distance(transform.position, col.transform.position);
-            if (distance < bestDistance)
+            if (col.CompareTag("Enemy"))
             {
-                bestDistance = distance;
-                bestEnemy = col;
+                float distance = Vector3.Distance(transform.position, col.transform.position);
+                if (distance < bestDistance)
+                {
+                    bestDistance = distance;
+                    bestEnemy = col;
+                }
             }
         }
-        currentTarget = bestEnemy.gameObject;
+        if (bestEnemy != null)
+            currentTarget = bestEnemy.gameObject;
+        else
+            currentTarget = null;
     }
 }
