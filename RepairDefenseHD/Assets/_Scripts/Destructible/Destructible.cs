@@ -43,6 +43,8 @@ public abstract class Destructible : MonoBehaviour
 
     void Awake()
     {
+        rManager = GameObject.FindObjectOfType<ResourceManager>();
+
         if (m_fInitHealth == 0)
         {
             m_fInitHealth = 200;
@@ -86,7 +88,7 @@ public abstract class Destructible : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F12))
         {
             m_fHealth = 0;
-            OnDamageDestructible(1);
+            OnDamageDestructible(10);
         }
     }
 
@@ -99,7 +101,7 @@ public abstract class Destructible : MonoBehaviour
     [ContextMenu("Repair Destructible")]
     public void TestRepair()
     {
-        OnRepairDestructible(5);
+        OnRepairDestructible(10);
     }
 
     public void OnDamageDestructible(float fDamage)
@@ -136,8 +138,8 @@ public abstract class Destructible : MonoBehaviour
         if (rManager.currentwood >= fRepairValue && rManager.currentstone >= fRepairValue)
         {
             Debug.Log("Repairing. Resources: Wood: " + rManager.currentwood + "Stone: " + rManager.currentstone);
-            rManager.currentwood -= 10;
-            rManager.currentstone -= 10;
+            rManager.currentwood -= fRepairValue;
+            rManager.currentstone -= fRepairValue;
             Debug.Log("RepairedResources: Wood: " + rManager.currentwood + "Stone: " + rManager.currentstone);
             m_fHealth += fRepairValue;
 
@@ -147,6 +149,7 @@ public abstract class Destructible : MonoBehaviour
             }
             rManager.UpdateGUI();
             UpdateHealthBar();
+            OnCollapseBuilding();
         }
         else
         {
@@ -203,6 +206,7 @@ public abstract class Destructible : MonoBehaviour
             other.gameObject.GetComponentInChildren<Interaction>().unityEventInteraction.AddListener(() => OnRepairDestructible(10));
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
