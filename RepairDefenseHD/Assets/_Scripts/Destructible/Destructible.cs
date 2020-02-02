@@ -135,7 +135,7 @@ public abstract class Destructible : MonoBehaviour
     {
         //TODO: Do not overrepair
         //TODO: init health != max health (we need max health)
-        if (rManager.currentwood >= fRepairValue && rManager.currentstone >= fRepairValue)
+        if (rManager.currentwood >= fRepairValue && rManager.currentstone >= fRepairValue && m_fHealth < m_fInitHealth)
         {
             Debug.Log("Repairing. Resources: Wood: " + rManager.currentwood + "Stone: " + rManager.currentstone);
             rManager.currentwood -= fRepairValue;
@@ -163,6 +163,9 @@ public abstract class Destructible : MonoBehaviour
             {
                 Debug.Log("You require " + requiredstone + " more Stone!");
             }
+        }
+        if (m_fHealth == m_fInitHealth){
+            Debug.Log("This Structure is already fully repaired!");
         }
     }
 
