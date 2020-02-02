@@ -10347,11 +10347,7 @@ Transform:
   - {fileID: 1789610359}
   - {fileID: 489476809}
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
   m_RootOrder: 25
-=======
-  m_RootOrder: 17
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &551402613
 PrefabInstance:
@@ -23861,7 +23857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1314543223
 Transform:
   m_ObjectHideFlags: 0
@@ -30757,11 +30753,7 @@ Transform:
   - {fileID: 159891079}
   - {fileID: 45310960}
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream
   m_RootOrder: 30
-=======
-  m_RootOrder: 22
->>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1693903784
 PrefabInstance:
