@@ -32,11 +32,14 @@ public class TargetEnemy : MonoBehaviour
             loadedProjectile = Instantiate(ammunition, projectilePosition, projectileRotation, transform);
             loaded = true;
         }
-        if (currentCooldown >= cooldownBetweenShots)
+        if (currentTarget != null)
         {
-            currentCooldown = 0;
-            Shoot();
-            loaded = false;
+            if (currentCooldown >= cooldownBetweenShots)
+            {
+                currentCooldown = 0;
+                Shoot();
+                loaded = false;
+            }
         }
     }
     private void Shoot()

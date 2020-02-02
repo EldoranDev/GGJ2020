@@ -50,7 +50,7 @@ public abstract class Destructible : MonoBehaviour
         }
         if (this.GetType() != typeof(Building_Main))
         {
-            transform.localScale = new Vector3(1, m_fHealth / m_fInitHealth, 1);
+            transform.localScale = new Vector3(transform.localScale.x, m_fHealth / m_fInitHealth, transform.localScale.z);
         }
 
         if (m_acTrigger != null && m_acTrigger.Count > 0)
@@ -125,7 +125,7 @@ public abstract class Destructible : MonoBehaviour
     {
         if (this.GetType() != typeof(Building_Main))
         {
-            transform.localScale = new Vector3(1, m_fHealth / m_fInitHealth, 1);
+            transform.localScale = new Vector3(transform.localScale.x, m_fHealth / m_fInitHealth, transform.localScale.z);
         }
     }
 
